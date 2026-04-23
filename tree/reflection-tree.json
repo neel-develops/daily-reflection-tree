@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    { "id": "START", "type": "start", "text": "Good evening. Let’s take a moment to reflect on your day." },
+
+    { "id": "A1_Q1", "type": "question", "text": "How would you describe your day overall?", "options": ["Productive", "Tough", "Mixed", "Frustrating"] },
+
+    { "id": "A1_D1", "type": "decision",
+      "rules": [
+        { "if": ["Productive", "Mixed"], "goTo": "A1_Q2_HIGH" },
+        { "if": ["Tough", "Frustrating"], "goTo": "A1_Q2_LOW" }
+      ]
+    },
+
+    { "id": "A1_Q2_HIGH", "type": "question", "text": "When things went well, what contributed most?", "options": ["My preparation", "Team effort", "Luck", "Quick adaptation"], "signal": "axis1:internal" },
+
+    { "id": "A1_Q2_LOW", "type": "question", "text": "When things didn’t go well, what was your first reaction?", "options": ["Find what I can control", "Blame situation", "Wait for help", "Feel stuck"], "signal": "axis1:external" },
+
+    { "id": "A1_REF_INT", "type": "reflection", "text": "You recognized your role in outcomes today. That’s agency — even small decisions matter.", "signal": "axis1:internal" },
+
+    { "id": "A1_REF_EXT", "type": "reflection", "text": "It felt like things were outside your control. But even then, there were moments you made choices — noticing them is powerful.", "signal": "axis1:external" },
+
+    { "id": "BRIDGE_1_2", "type": "bridge", "text": "Now let’s shift from control to contribution." },
+
+    { "id": "A2_Q1", "type": "question", "text": "Which best describes your behavior today?", "options": ["Helped someone", "Did my tasks only", "Expected recognition", "Felt others underperformed"] },
+
+    { "id": "A2_D1", "type": "decision",
+      "rules": [
+        { "if": ["Helped someone"], "goTo": "A2_Q2_CONTRIB" },
+        { "if": ["Did my tasks only", "Expected recognition", "Felt others underperformed"], "goTo": "A2_Q2_ENT" }
+      ]
+    },
+
+    { "id": "A2_Q2_CONTRIB", "type": "question", "text": "Why did you help?", "options": ["Team success matters", "Felt right", "Habit", "Was asked"], "signal": "axis2:contribution" },
+
+    { "id": "A2_Q2_ENT", "type": "question", "text": "What bothered you most?", "options": ["Lack of recognition", "Others not working enough", "Too much workload", "No support"], "signal": "axis2:entitlement" },
+
+    { "id": "A2_REF_CONTRIB", "type": "reflection", "text": "You leaned toward contribution today. That’s how strong teams are built — through actions beyond obligation.", "signal": "axis2:contribution" },
+
+    { "id": "A2_REF_ENT", "type": "reflection", "text": "You noticed what you didn’t receive. That’s natural — but shifting toward what you can give often creates momentum.", "signal": "axis2:entitlement" },
+
+    { "id": "BRIDGE_2_3", "type": "bridge", "text": "Now let’s expand the lens beyond just you." },
+
+    { "id": "A3_Q1", "type": "question", "text": "When thinking about today’s biggest challenge, who comes to mind?", "options": ["Only me", "My team", "A colleague", "Customer/end user"] },
+
+    { "id": "A3_D1", "type": "decision",
+      "rules": [
+        { "if": ["Only me"], "goTo": "A3_Q2_SELF" },
+        { "if": ["My team", "A colleague", "Customer/end user"], "goTo": "A3_Q2_ALTRO" }
+      ]
+    },
+
+    { "id": "A3_Q2_SELF", "type": "question", "text": "What made it feel personal?", "options": ["Pressure", "Responsibility", "Stress", "Uncertainty"], "signal": "axis3:self" },
+
+    { "id": "A3_Q2_ALTRO", "type": "question", "text": "How did others impact your thinking?", "options": ["Shared effort", "Empathy", "Responsibility toward them", "Understanding their struggle"], "signal": "axis3:altro" },
+
+    { "id": "A3_REF_SELF", "type": "reflection", "text": "You focused on your own experience today. That’s valid — but sometimes stepping outward brings clarity.", "signal": "axis3:self" },
+
+    { "id": "A3_REF_ALTRO", "type": "reflection", "text": "You considered others in your thinking. That’s a wider perspective — and often leads to deeper meaning.", "signal": "axis3:altro" },
+
+    { "id": "SUMMARY", "type": "summary", "text": "Today you showed patterns in control, contribution, and perspective. Small awareness leads to big change over time." },
+
+    { "id": "END", "type": "end", "text": "Reflection complete. See you tomorrow." }
+  ]
+}
