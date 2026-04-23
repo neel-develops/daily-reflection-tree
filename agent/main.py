@@ -1,11 +1,9 @@
-import json
+from tree_loader import load_tree, validate_tree
 from engine import run_tree
 
-def load_tree():
-    with open("../tree/reflection-tree.json") as f:
-        data = json.load(f)
-        return {node["id"]: node for node in data["nodes"]}
-
 if __name__ == "__main__":
-    tree = load_tree()
+    tree = load_tree("../tree/reflection-tree.json")
+    validate_tree(tree)
+
+    print("Starting Reflection Session...\n")
     run_tree(tree)
